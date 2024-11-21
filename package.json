@@ -1,0 +1,23 @@
+{
+    "name": "byte-pg",
+    "module": "./src/index.ts",
+    "type": "module",
+    "scripts": {
+        "build": "bun build.ts",
+        "build:node": "bun build.ts --node",
+        "clean": "rimraf -rf build"
+    },
+    "devDependencies": {
+        "@citizenfx/server": "^2.0.11345-1",
+        "@types/bun": "latest",
+        "@types/pg": "^8.11.10",
+        "esbuild": "^0.24.0",
+        "rimraf": "^6.0.1"
+    },
+    "peerDependencies": {
+        "typescript": "^5.0.0"
+    },
+    "dependencies": {
+        "pg": "^8.13.1"
+    }
+}
