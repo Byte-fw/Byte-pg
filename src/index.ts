@@ -3,6 +3,7 @@ import { Database } from "./databse";
 import { EnvManager } from "./env";
 
 let db: Database;
+let error: string;
 
 (async () => {
     const connectionString = EnvManager.getConectionString();
@@ -17,14 +18,16 @@ let db: Database;
         TriggerEvent("byte-pg:server:connected", null);
         console.log(`^2Connected to PostgreSQL [${await db.getVersion()}]^0`);
     } catch (e: any) {
-        TriggerEvent("byte-pg:server:connected", e.message || "An unknown error occurred");
+        console.error(`^1Failed to connect to PostgreSQL: ${e.message || "An unknown error occurred"}^0`);
+        error = e.message || "An unknown error occurred";
+        TriggerEvent("byte-pg:server:connected", error);
     }
 })();
 
-exports("Ready", (cb: Function) => {
-    if (db) return cb();
+exports("Ready", (cb: Function) => setImmediate(() => {
+    if (db || error) return cb(error);
     AddEventHandler("byte-pg:server:connected", (err: string) => cb(err));
-});
+}));
 
 exports("Query", (query: string, args: any[], cb: Function) => {
     db.query(query, args).then(result => {
