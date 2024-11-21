@@ -11,7 +11,7 @@ let db: Database;
         if (connectionString === "none") {
             throw new Error("No connection string provided");
         }
-    
+
         const params = Database.parseURLString(connectionString)
         db = await Database.createDatabase(...params);
         TriggerEvent("byte-pg:server:connected", null);
