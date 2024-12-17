@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/JaRoLoz/jade/refs/heads/main/jade.xsd">
+    <js_build name="build">
+        <folder>.</folder>
+        <build_script>build</build_script>
+        <install_packages>true</install_packages>
+    </js_build>
+    <manifest name="manifest-step">
+        <fx_version>cerulean</fx_version>
+        <game>gta5</game>
+        <author>Zurky</author>
+        <description>Basic wrapper for PostgreSQL designed for Byte</description>
+        <version>1.0.0</version>
+        <server_scripts>
+            <server_script>build/index.js</server_script>
+        </server_scripts>
+    </manifest>
+</config>
